@@ -16,9 +16,11 @@ dotenv.config();
 const app = express();
 
 app.use(helmet());
-app.use(cors({ origin: 'https://frontend-o4v5.onrender.com', || 'https://frontend-o4v5.onrender.com' 
-             credentials: true
+app.use(cors({
+  origin: 'https://frontend-o4v5.onrender.com',
+  credentials: true
 }));
+
 app.use(express.json({ limit: '15mb' }));
 app.use(rateLimiter);
 
