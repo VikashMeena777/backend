@@ -16,8 +16,21 @@ dotenv.config();
 const app = express();
 
 app.use(helmet());
+
+const allowedOrigins = [
+  'http://localhost:5173',           // local Vite frontend
+  'https://frontend-o4v5.onrender.com' // Render frontend
+];
+
 app.use(cors({
-  origin: 'https://frontend-o4v5.onrender.com',
+  origin: function(origin, callback) {
+    if (!origin) return callback(null, true); // allow Postman or server-to-server requests
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true
 }));
 
