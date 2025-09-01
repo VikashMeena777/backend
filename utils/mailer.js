@@ -2,7 +2,7 @@ import nodemailer from 'nodemailer';
 
 const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST || '',
-    port: parseInt(process.env.SMTP_PORT || '587', 10),
+    port: parseInt(process.env.SMTP_PORT || '2525', 10),
     secure: false,
     auth: {
         user: process.env.SMTP_USER || '',
@@ -37,3 +37,4 @@ export function bookingEmailTemplate(booking) {
 export function orderConfirmationTemplate(order) {
     return `<h3>Order Confirmed</h3><p>Order ID: ${order._id}</p><p>Amount: ₹${order.amount}</p>`;
 }
+
